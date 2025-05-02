@@ -2,7 +2,7 @@
 
 ## Capstone toy_project
 
-To run this code, comment below
+To run this code, type below
 
 ```bash
 streamlit run test1.py
