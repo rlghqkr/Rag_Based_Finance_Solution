@@ -1,20 +1,24 @@
-import os
-import streamlit as st
-from dotenv import load_dotenv
-from pages.stock_search import render_stock_search
-from pages.document_search import render_document_search
-from pages.agentic_rag import render_agentic_rag_tab
+import streamlit as st  # 가장 먼저 streamlit 임포트
 
-load_dotenv()
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-
+# 반드시 다른 모든 import와 코드보다 먼저 set_page_config 호출
 st.set_page_config(
     page_title="🤖 AI 금융 어시스턴트",
     page_icon="💹",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# 그 다음에 모든 다른 임포트
+import os
+from dotenv import load_dotenv
+from pages.stock_search import render_stock_search
+from pages.document_search import render_document_search
+from pages.agentic_rag import render_agentic_rag_tab
+
+# 환경 변수 로드
+load_dotenv()
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # 사이드바: 모델 & 하이퍼파라미터
 with st.sidebar:
@@ -31,9 +35,7 @@ with st.sidebar:
     st.slider("Pres Penalty",-2.0,2.0,0.0,0.1, key="presence_penalty")
 
 st.title("🤖 AI 금융 어시스턴트")
-tab1, tab2, tab3 = st.tabs(["📈 주식 정보","📄 문서 분석", "🤖Agentic RAG"])
+tab1, tab2, tab3 = st.tabs(["📈 주식 정보","📄 문서 분석", "📊 포트폴리오 추천"])
 with tab1: render_stock_search()
 with tab2: render_document_search()
 with tab3: render_agentic_rag_tab()
-
-
