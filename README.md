@@ -1,6 +1,5 @@
-# Stone
+# rag-based-finance-solution
 
-## Capstone toy_project
 
 To run this code, type below
 
